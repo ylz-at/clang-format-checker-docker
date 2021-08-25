@@ -2,6 +2,8 @@
 
 This Docker image let you verify that your code matches the format from clang-format, in an easy way, as part of your CI pipeline. The clang-format versions supported can be found on the ["Tags" page](https://hub.docker.com/repository/docker/witekio/clang-format-checker/tags?page=1) of the image.
 
+The version of clang-format currently supported in Dockerfile is v13.
+
 ## Getting Started
 
 The simplest use of this image is to check source files in the current folder, after mounting it with `-v`. The example below checks all files in the current folder (`.`), and recursively (`-r`):
@@ -34,7 +36,9 @@ The following GitLab CI step will check for any style error in the `src` folder,
 
 ```.gitlab-ci.yml
 check-format:
-  image: witekio/clang-format-checker
+  image: 
+    name: witekio/clang-format-checker
+    entrypoint: [ "" ]
   script:
     - run-clang-format.py -r src
 ```
